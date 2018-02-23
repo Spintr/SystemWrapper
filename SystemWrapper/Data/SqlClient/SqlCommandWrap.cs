@@ -24,6 +24,7 @@ namespace SystemWrapper.Data.SqlClient
         public void Initialize()
         {
             SqlCommandInstance = new SqlCommand();
+            Parameters = new SqlParameterCollectionWrap(SqlCommandInstance.Parameters);
         }
 
         /// <summary>
@@ -42,6 +43,7 @@ namespace SystemWrapper.Data.SqlClient
         public void Initialize(SqlCommand command)
         {
             SqlCommandInstance = command;
+            Parameters = new SqlParameterCollectionWrap(SqlCommandInstance.Parameters);
         }
 
         /// <summary>
@@ -60,6 +62,7 @@ namespace SystemWrapper.Data.SqlClient
         public void Initialize(string cmdText)
         {
             SqlCommandInstance = new SqlCommand(cmdText);
+            Parameters = new SqlParameterCollectionWrap(SqlCommandInstance.Parameters);
         }
 
         /// <summary>
@@ -80,7 +83,10 @@ namespace SystemWrapper.Data.SqlClient
         public void Initialize(string cmdText, ISqlConnection connection)
         {
             SqlCommandInstance = new SqlCommand(cmdText, connection.SqlConnectionInstance);
+            Parameters = new SqlParameterCollectionWrap(SqlCommandInstance.Parameters);
         }
+
+        public ISqlParameterCollection Parameters { get; private set; }
 
         #endregion Constructors
 

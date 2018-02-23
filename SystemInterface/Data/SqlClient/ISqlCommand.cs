@@ -46,6 +46,8 @@ namespace SystemInterface.Data.SqlClient
         /// <param name="connection">A ISqlConnectionWrap that represents the connection to an instance of SQL Server.</param>
         void Initialize(string cmdText, ISqlConnection connection);
 
+        ISqlParameterCollection Parameters { get; }
+
         /*
 
             // Events
@@ -91,7 +93,6 @@ namespace SystemInterface.Data.SqlClient
     public override bool DesignTimeVisible { get; set; }
     public SqlNotificationRequest Notification { get; set; }
     public bool NotificationAutoEnlist { get; set; }
-    public SqlParameterCollection Parameters { get; }
     public SqlTransaction Transaction { get; set; }
     public override UpdateRowSource UpdatedRowSource { get; set; }
 */

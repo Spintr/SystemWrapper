@@ -83,5 +83,40 @@ namespace SystemWrapper.Tests.IO
             Assert.IsNotNull(instance.SqlCommandInstance);
         }
 
+
+        [Test]
+        public void Initialize_1_Sets_Parameter_Collection()
+        {
+            var instance = new SqlCommandWrap();
+            instance.Initialize();
+            Assert.IsNotNull(instance.Parameters);
+        }
+
+        [Test]
+        public void Initialize_2_Sets_Parameter_Collection()
+        {
+            var instance = new SqlCommandWrap();
+            instance.Initialize(new SqlCommand());
+
+            Assert.IsNotNull(instance.Parameters);
+        }
+
+        [Test]
+        public void Initialize_3_Sets_Parameter_Collection()
+        {
+            var instance = new SqlCommandWrap();
+            instance.Initialize("command text string");
+            Assert.IsNotNull(instance.Parameters);
+        }
+
+        [Test]
+        public void Initialize_4_Sets_Parameter_Collection()
+        {
+            var instance = new SqlCommandWrap();
+            var mockConnWrap = _mockRepository.Stub<ISqlConnection>();
+            instance.Initialize("command text string", mockConnWrap);
+            Assert.IsNotNull(instance.Parameters);
+        }
+
     }
 }
